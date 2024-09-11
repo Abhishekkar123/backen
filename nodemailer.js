@@ -1,5 +1,8 @@
 // const nodemailer = require("nodemailer");
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // console.log(nodemailer)
 
@@ -8,8 +11,8 @@ let transporter = nodemailer.createTransport({
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: '', // generated ethereal user
-      pass: 'auny upwl cohc fzmv', // generated ethereal password
+      user:process.env.Name , // generated ethereal user
+      pass: process.env.password, // generated ethereal password
     },
   });
   let info = await transporter.sendMail({
