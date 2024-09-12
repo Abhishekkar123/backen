@@ -10,7 +10,13 @@ dotenv.config();
 
 app.use(bodyParser.json({extended:true}))
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(cors())
+const corsOptions = {
+  origin: 'https://frontend-1-c2on.onrender.com', // Replace with your frontend URL
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true // Set this to true if you need to allow credentials (e.g., cookies)
+};
+
+app.use(cors(corsOptions));
 app.use("/",router)
 
 const userName=process.env.DB_USER
