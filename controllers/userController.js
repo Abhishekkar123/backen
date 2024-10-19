@@ -26,7 +26,7 @@ export const userSignup=async(req,res)=>{
         //email service
         const emailToken = jwt.sign({ email: user.email }, EMAIL_SECRET, { expiresIn: '1h' });
         console.log(emailToken)
-        const url = `https://frontend-1-c2on.onrender.com/verify/${emailToken}`;
+        const url = `http://localhost:5173/verify/${emailToken}`;
 
         //check the ttoken generate to check the email
 

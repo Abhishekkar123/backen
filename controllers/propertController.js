@@ -13,7 +13,7 @@ export const propertyDetails=async(req,res)=>{
           userAdType,
           userType,
           location,
-          generalAmenities,
+          configuration,
           communityAmenities,
           price,
           userId,
@@ -22,6 +22,24 @@ export const propertyDetails=async(req,res)=>{
  
           // console.log(JSON.parse(location))
           console.log(location)
+
+
+          //if userId =>isPresent 
+          const isUser=await User.findOne({_id:userId});
+
+          /**
+           * PropertyTable==>(UserId)Id
+           * 
+           * 
+           * User(UserId)=>Id
+           * 
+           * check (property ka undar User ka Id ha wo User table Ka id se match ha kya?
+           * )
+           */
+
+          if(!isUser){
+               console.log("User is not Exist")
+          }
       
         // Extract the image URLs from the uploaded files
         const images = req.files.map(file => file.path);
@@ -33,7 +51,7 @@ export const propertyDetails=async(req,res)=>{
           userAdType,
           userType,
           location,
-          generalAmenities,
+          configuration,
           communityAmenities,
           price,
           userId,
@@ -47,7 +65,7 @@ export const propertyDetails=async(req,res)=>{
         res.status(201).json({ message: 'Property created successfully', property: newProperty });
       } catch (error) {
         console.error('Error creating property:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: error.message });
       }
 }
 
